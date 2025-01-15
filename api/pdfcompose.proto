@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package pdfcompose;
+
+option go_package = "/pdfcompose";
+
+service PdfComposeService {
+    rpc Send (SendRequest) returns (SendResponse) {}
+}
+
+message SendRequest {
+    bytes upfile1 = 1;
+    bytes upfile2 = 2;
+    bytes upfile3 = 3;
+}
+
+message SendResponse {
+    bytes pdf_file = 1;
+}
+
+message ErrorResponse {
+    int32 code = 1;
+    string message = 2;
+}
