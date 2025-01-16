@@ -5,13 +5,22 @@ package pdfcompose;
 option go_package = "/pdfcompose";
 
 service PdfComposeService {
-    rpc Send (SendRequest) returns (SendResponse) {}
+    rpc Send (stream SendRequest) returns (SendResponse) {}
 }
 
 message SendRequest {
-    bytes upfile1 = 1;
-    bytes upfile2 = 2;
-    bytes upfile3 = 3;
+    oneof payload {
+        FileInfo info = 1;
+        FileChunk chunk = 2;
+    }
+}
+
+message FileInfo {
+    string filename = 1;
+}
+
+message FileChunk {
+    bytes data = 1;
 }
 
 message SendResponse {
