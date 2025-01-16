@@ -16,11 +16,13 @@ message SendRequest {
 }
 
 message FileInfo {
-    string filename = 1;
+    int32 file_id = 1;
+    string filename = 2;
 }
 
 message FileChunk {
-    bytes data = 1;
+    int32 file_id = 1;
+    bytes data = 2;
 }
 
 message SendResponse {
